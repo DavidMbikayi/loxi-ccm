@@ -46,7 +46,6 @@ jobs:
         push: true
         tags: |
           ghcr.io/davidmbikayi/loxi-ccm:latest
-          ghcr.io/davidmbikayi/loxi-ccm:${{ github.event.inputs.tagName }}
         
     # - name: Build the latest loxilb Docker image
     #   if: github.event.inputs.tagName == ''
