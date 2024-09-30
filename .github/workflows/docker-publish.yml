@@ -35,20 +35,20 @@ jobs:
         
     - name: Build the latest loxilb Docker image
       if: github.event.inputs.tagName == ''
-      run: docker build . --tag ghcr.io/loxilb-io/loxi-ccm:latest
+      run: docker build . --tag ghcr.io/davidmbikayi/loxi-ccm:latest
       
     - name: Build the loxilb Docker image with given tag
       if: github.event.inputs.tagName != ''
-      run: docker build . --tag ghcr.io/loxilb-io/loxi-ccm:${{ github.event.inputs.tagName }}
+      run: docker build . --tag ghcr.io/davidmbikayi/loxi-ccm:${{ github.event.inputs.tagName }}
 
     - name: Publish the latest loxilb Docker image
       if: | 
-          github.repository == 'loxilb-io/loxi-ccm' 
+          github.repository == 'davidmbikayi/loxi-ccm' 
           &&  github.event.inputs.tagName == ''
-      run: docker push ghcr.io/loxilb-io/loxi-ccm:latest
+      run: docker push ghcr.io/davidmbikayi/loxi-ccm:latest
       
     - name: Publish the loxilb Docker image with given tag
       if: |
-          github.repository == 'loxilb-io/loxi-ccm'
+          github.repository == 'davidmbikayi/loxi-ccm'
           &&  github.event.inputs.tagName != ''
       run: docker push ghcr.io/davidmbikayi/loxi-ccm:${{ github.event.inputs.tagName }} 
