@@ -47,9 +47,10 @@ jobs:
         tags: |
           ghcr.io/davidmbikayi/loxi-ccm:latest
         
-    # - name: Build the latest loxilb Docker image
-    #   if: github.event.inputs.tagName == ''
-    #   run: docker build . --tag ghcr.io/davidmbikayi/loxi-ccm:latest
+    - name: Build the latest loxilb Docker image
+      if: github.event.inputs.tagName == ''
+      run: docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/davidmbikayi/loxi-ccm:latest .
+
       
     # - name: Build the loxilb Docker image with given tag
     #   if: github.event.inputs.tagName != ''
