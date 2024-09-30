@@ -1,5 +1,14 @@
-FROM eyes852/ubuntu-iperf-test:0.5
+FROM golang:1.20 AS builder
 
-COPY ./bin/loxi-cloud-controller-manager /bin/loxi-cloud-controller-manager
+WORKDIR /app
+
+COPY . .
+
+RUN go build -o ./bin/loxi-cloud-controller-manager ./cmd
+
+FROM networkstatic/iperf3:latest
+
+COPY --from=builder /app/bin/loxi-cloud-controller-manager /bin/loxi-cloud-controller-manager
+
 USER root
 RUN chmod +x /bin/loxi-cloud-controller-manager
